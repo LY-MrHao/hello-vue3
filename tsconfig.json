@@ -15,15 +15,6 @@
     "types": [
       "webpack-env"
     ],
-    "paths": {
-      "@/*": ["src/*"],
-      "@img/*": ["src/assets/img/*"],
-      "@less/*": ["src/assets/less/*"],
-      "@libs/*": ["src/libs/*"],
-      "@plugins/*": ["src/plugins/*"],
-      "@components/*": ["src/components/*"],
-      "@views/*": ["src/views/*"]
-    },
     "lib": [
       "esnext",
       "dom",
