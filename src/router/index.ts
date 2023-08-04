@@ -19,7 +19,27 @@ const routes: Array<RouteRecordRaw> = [
     path: '/test',
     name: 'test',
     component: () => import('@/views/TestView.vue')
-  }
+  },
+  {
+    path: '/container',
+    name: 'container',
+    component: () => import('@/views/Container.vue')
+  },
+  {
+    path: '/border',
+    name: 'border',
+    component: () => import('@/views/Border.vue')
+  },
+  {
+    path: '/scrollbar',
+    name: 'scrollbar',
+    component: () => import('@/views/Scrollbar.vue')
+  },
+  {
+    path: '/student',
+    name: 'student',
+    component: () => import('@/views/Student.vue')
+  },
 ]
 
 const router = createRouter({
