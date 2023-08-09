@@ -14,10 +14,12 @@
 </template>
 
 <script>
+import studentApi from '../http/api/student.js'
 export default {
   data() {
     return {
-      userData: [
+      userData: [],
+      /*userData: [
         {
           id: '1',
           name: 'Ming',
@@ -36,9 +38,20 @@ export default {
           reg_time: '2023-8-4 17:14:58',
           address: 'aaa@abc.com',
         },
-      ]
+      ]*/
     }
+  },
+  methods: {
+    getStudentsInfo() {
+      studentApi.getStudents().then((response) => {
+        this.userData = response
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  },
+  mounted() {
+    this.getStudentsInfo()
   }
 }
-
 </script>
