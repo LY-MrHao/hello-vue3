@@ -5,6 +5,10 @@ const student = {
   getStudents() {
     return axios.get('/student')
   },
+  // 删除
+  deleteStudent(id) {
+    return axios.delete(`/student/${id}`)
+  },
 }
 
 export default student

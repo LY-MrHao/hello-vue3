@@ -9,15 +9,40 @@
     <el-table-column prop="id" label="ID" width="50" />
     <el-table-column prop="name" label="Name" width="180" />
     <el-table-column prop="reg_time" label="RegTime" width="180" />
-    <el-table-column prop="address" label="Address" />
+    <el-table-column prop="address" label="Address" width="180" />
+    <el-table-column label="Action">
+      <template #default="scope">
+        <el-button-group class="ml-4">
+          <el-button :icon="Edit" plain />
+          <el-popconfirm
+            width="235"
+            confirm-button-text="OK"
+            cancel-button-text="No, Thanks"
+            :icon="InfoFilled"
+            icon-color="#626AEF"
+            title="Are you sure to delete this?"
+            @confirm="deleteStudent(scope.row.id)"
+          >
+            <template #reference>
+              <el-button :icon="Delete" plain type="danger"/>
+            </template>
+          </el-popconfirm>
+        </el-button-group>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
 <script>
 import studentApi from '../http/api/student.js'
+import { Edit, Delete, InfoFilled } from '@element-plus/icons-vue'
+
 export default {
   data() {
     return {
+      Edit,
+      Delete,
+      InfoFilled,
       userData: [],
       /*userData: [
         {
@@ -44,9 +69,23 @@ export default {
   methods: {
     getStudentsInfo() {
       studentApi.getStudents().then((response) => {
-        this.userData = response
+        if (response.code === 0) {
+          this.userData = response.data
+        } else {
+          // TODO：错误处理
+        }
       }).catch(err => {
         console.log(err)
+      })
+    },
+    deleteStudent(id) {
+      studentApi.deleteStudent(id).then((response) => {
+        if (response.code === 0) {
+          // 刷新列表
+          this.getStudentsInfo()
+        } else {
+          // TODO：错误处理
+        }
       })
     }
   },
